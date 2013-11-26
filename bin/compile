@@ -119,6 +119,15 @@ echo "Executing init.r script" | indent
 
 ls $BUILD_DIR
 
+$BUILD_DIR/app/vendor/R/bin/R -s <<RPROG > output1
+  Sys.setenv(BUILD_DIR="$BUILD_DIR")
+  setwd("$BUILD_DIR")
+  1+1
+RPROG
+
+cat output1
+
+
 # set the CRAN mirror and run the init.r program
 $BUILD_DIR/app/vendor/R/bin/R -s <<RPROG > indent
   Sys.setenv(BUILD_DIR="$BUILD_DIR")
