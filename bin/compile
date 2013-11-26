@@ -42,6 +42,7 @@ R_VERSION="2.15.1"
 
 S3_BUCKET="heroku-buildpack-r"
 R_BINARIES="http://${S3_BUCKET}.s3.amazonaws.com/R-${R_VERSION}-binaries-${BUILD_PACK_VERSION}.tar.gz"
+FILE_NAME="R-${R_VERSION}-binaries-${BUILD_PACK_VERSION}.tar.gz"
 
 VENDOR_DIR="$BUILD_DIR/vendor"
 R_HOME="$VENDOR_DIR/R"
@@ -59,11 +60,11 @@ mkdir -p $VENDOR_DIR
 
 echo "created directory" | indent
 
-curl $R_BINARIES -s -o "R-${R_VERSION}-binaries-${BUILD_PACK_VERSION}.tar.gz"
+curl $R_BINARIES -s -o $FILE_NAME
 
 echo "R pulled" | indent
 
-tar xzf "R-${R_VERSION}-binaries-${BUILD_PACK_VERSION}.tar.gz" -C $VENDOR_DIR
+tar xzf $FILE_NAME -C $VENDOR_DIR
 
 echo "R unpacked" | indent
 
