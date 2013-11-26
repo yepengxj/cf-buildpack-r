@@ -59,9 +59,13 @@ mkdir -p $VENDOR_DIR
 
 echo "created directory" | indent
 
-curl $R_BINARIES -s -o - | tar xzf - -C $VENDOR_DIR
+curl $R_BINARIES -s -o "R-${R_VERSION}-binaries-${BUILD_PACK_VERSION}.tar.gz"
 
-echo "R pulled, unpacked" | indent
+echo "R pulled" | indent
+
+tar xzf "R-${R_VERSION}-binaries-${BUILD_PACK_VERSION}.tar.gz" -C $VENDOR_DIR
+
+echo "R unpacked" | indent
 
 # need to copy the binaries to /app/vendor so that R works
 cp -R $VENDOR_DIR/gcc-$GCC_VERSION /app/vendor/gcc-$GCC_VERSION
