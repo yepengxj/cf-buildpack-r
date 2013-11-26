@@ -117,7 +117,9 @@ echo "Executing init.r script" | indent
 
 ls $BUILD_DIR
 
+set +e
 $BUILD_DIR/app/vendor/R/bin/R --version
+set -e
 
 $BUILD_DIR/app/vendor/R/bin/R -s <<RPROG > output1
   Sys.setenv(BUILD_DIR="$BUILD_DIR")
