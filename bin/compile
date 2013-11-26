@@ -119,7 +119,6 @@ ls $BUILD_DIR
 
 set +e
 R --version
-set -e
 
 echo "version successfully displayed"
 
@@ -131,7 +130,7 @@ RPROG
 
 cat output1
 
-
+set -e
 # set the CRAN mirror and run the init.r program
 $BUILD_DIR/app/vendor/R/bin/R -s <<RPROG > indent
   Sys.setenv(BUILD_DIR="$BUILD_DIR")
