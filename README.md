@@ -1,7 +1,9 @@
 # Heroku buildpack: R
 
-This is a [Heroku buildpack](http://devcenter.heroku.com/articles/buildpacks) for applications which use
+This is a CloudFoundry buildpack for applications which use
 [R](http://www.r-project.org/) for statistical computing and [CRAN](http://cran.r-project.org/) for R packages.
+
+It's a fork from the above mentioned buildpack for Heroku.
 
 R is ‘GNU S’, a freely available language and environment for statistical computing and graphics which provides
 a wide variety of statistical and graphical techniques: linear and nonlinear modelling, statistical tests, time

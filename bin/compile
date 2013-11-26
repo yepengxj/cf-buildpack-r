@@ -47,6 +47,7 @@ CRAN_MIRROR="http://cran.revolutionanalytics.com"
 
 mkdir -p $CACHE_DIR
 
+echo "Starting stuff..."
 # vendor R into the slug
 echo "Vendoring R $R_VERSION" | indent
 
