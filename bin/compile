@@ -114,6 +114,8 @@ touch $BUILD_DIR/app/vendor/R/lib64/R/doc/html/R.css
 
 # install dependencies from CRAN
 echo "Executing init.r script" | indent
+OUTPUT = 'ls $BUILD_DIR'
+echo $OUTPUT
 
 # set the CRAN mirror and run the init.r program
 $BUILD_DIR/app/vendor/R/bin/R -s <<RPROG > indent
