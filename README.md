@@ -1,4 +1,4 @@
-# Heroku buildpack: R
+# CloudFoundry buildpack: R
 
 This is a CloudFoundry buildpack for applications which use
 [R](http://www.r-project.org/) for statistical computing and [CRAN](http://cran.r-project.org/) for R packages.
