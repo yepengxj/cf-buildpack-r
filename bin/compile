@@ -2,10 +2,10 @@
 # bin/compile <build-dir> <cache-dir>
 
 # fail fast
-# set -e
+set -eo pipefail
 
 # debug
-set -x
+# set -x
 
 shopt -s extglob
 
@@ -25,10 +25,12 @@ function indent() {
 # clean up leaking environment
 unset GIT_DIR
 
+if [ -z "$BUILDPACK_CACHE" ]; then BUILDPACK_CACHE="/tmp"; fi
+LP_DIR=`cd $(dirname $0); cd ..; pwd`
+
 # parse and derive params
 BUILD_DIR=$1
 CACHE_DIR="$2/vendor"
-LP_DIR=`cd $(dirname $0); cd ..; pwd`
 BUILDPACK_DIR="$(dirname $(dirname $0))"
 
 # config
@@ -53,9 +55,13 @@ echo "Vendoring R $R_VERSION" | indent
 
 # download and unpack binaries
 echo "Downloading and unpacking R binaries" | indent
-mkdir -p $VENDOR_DIR && curl $R_BINARIES -s -o - | tar xzf - -C $VENDOR_DIR
+mkdir -p $VENDOR_DIR
 
-echo "Directory created, R pulled, unpacked" | indent
+echo "created directory" | indent
+
+curl $R_BINARIES -s -o - | tar xzf - -C $VENDOR_DIR
+
+echo "R pulled, unpacked" | indent
 
 # need to copy the binaries to /app/vendor so that R works
 cp -R $VENDOR_DIR/gcc-$GCC_VERSION /app/vendor/gcc-$GCC_VERSION
