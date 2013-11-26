@@ -77,6 +77,8 @@ echo "R unpacked" | indent
 
 echo "$PATH" | indent
 
+mkdir -p "$BUILD_DIR/app/vendor"
+
 # need to copy the binaries to $BUILD_DIR/app/vendor so that R works
 cp -R $VENDOR_DIR/gcc-$GCC_VERSION $BUILD_DIR/app/vendor/gcc-$GCC_VERSION
 cp -R $VENDOR_DIR/glibc-$GLIBC_VERSION $BUILD_DIR/app/vendor/glibc-$GLIBC_VERSION
