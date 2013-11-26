@@ -119,6 +119,8 @@ ls $BUILD_DIR
 
 R --version
 
+echo "version successfully displayed"
+
 $BUILD_DIR/app/vendor/R/bin/R -s <<RPROG > output1
   Sys.setenv(BUILD_DIR="$BUILD_DIR")
   setwd("$BUILD_DIR")
