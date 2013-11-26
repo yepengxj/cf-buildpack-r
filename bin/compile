@@ -35,6 +35,8 @@ CACHE_DIR="$2/vendor"
 echo "$CACHE_DIR" | indent
 BUILDPACK_DIR="$(dirname $(dirname $0))"
 
+echo "$HOME"
+
 # config
 BUILD_PACK_VERSION="20130729"
 
