@@ -117,7 +117,9 @@ echo "Executing init.r script" | indent
 
 ls $BUILD_DIR
 
+set +e
 R --version
+set -e
 
 echo "version successfully displayed"
 
