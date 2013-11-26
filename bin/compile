@@ -54,7 +54,6 @@ CRAN_MIRROR="http://cran.revolutionanalytics.com"
 
 mkdir -p $CACHE_DIR
 
-echo "Starting stuff..." | indent
 # vendor R into the slug
 echo "Vendoring R $R_VERSION" | indent
 
@@ -96,6 +95,12 @@ export R_HOME=$BUILD_DIR/app/vendor/R
 export R_INCLUDE=$R_HOME/lib64/R/include
 
 echo "variables set" | indent
+
+echo "$PATH"
+echo "$LDFLAGS"
+echo "$CPPFLAGS"
+echo "$R_HOME"
+echo "$R_INCLUDE"
 
 # copy over environment
 mkdir -p $BUILD_DIR/.profile.d
