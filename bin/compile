@@ -37,7 +37,11 @@ BUILDPACK_DIR="$(dirname $(dirname $0))"
 
 echo "$HOME"
 
-echo [ -d /home/vcap/app ]
+if [ -d /home/vcap/app ]; then
+    echo "That directory exists"
+else
+    echo "That directory doesn't exists"
+fi
 
 # config
 BUILD_PACK_VERSION="20130729"
@@ -77,6 +81,8 @@ tar xzf $CACHE_DIR/$FILE_NAME -C $VENDOR_DIR
 
 echo "R unpacked" | indent
 
+echo "$PATH" | indent
+
 # need to copy the binaries to /app/vendor so that R works
 cp -R $VENDOR_DIR/gcc-$GCC_VERSION /app/vendor/gcc-$GCC_VERSION
 cp -R $VENDOR_DIR/glibc-$GLIBC_VERSION /app/vendor/glibc-$GLIBC_VERSION
@@ -84,7 +90,7 @@ cp -R $VENDOR_DIR/R /app/vendor/R
 
 echo "Stuff copied" | indent
 
-echo "$PATH"
+
 
 # R needs to know where gfortran and glibc header files are
 export PATH=/app/vendor/R/bin:/app/vendor/gcc-$GCC_VERSION/bin:$PATH
