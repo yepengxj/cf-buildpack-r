@@ -54,10 +54,14 @@ echo "Vendoring R $R_VERSION" | indent
 echo "Downloading and unpacking R binaries" | indent
 mkdir -p $VENDOR_DIR && curl $R_BINARIES -s -o - | tar xzf - -C $VENDOR_DIR
 
+echo "Directory created, R pulled, unpacked" | indent
+
 # need to copy the binaries to /app/vendor so that R works
 cp -R $VENDOR_DIR/gcc-$GCC_VERSION /app/vendor/gcc-$GCC_VERSION
 cp -R $VENDOR_DIR/glibc-$GLIBC_VERSION /app/vendor/glibc-$GLIBC_VERSION
 cp -R $VENDOR_DIR/R /app/vendor/R
+
+echo "Stuff copied" | indent
 
 
 # R needs to know where gfortran and glibc header files are
@@ -67,9 +71,13 @@ export CPPFLAGS="-I/app/vendor/glibc-$GLIBC_VERSION/string/ -I/app/vendor/glibc-
 export R_HOME=/app/vendor/R
 export R_INCLUDE=$R_HOME/lib64/R/include
 
+echo "variables set" | indent
+
 # copy over environment
 mkdir -p $BUILD_DIR/.profile.d
 cp "$BUILDPACK_DIR/bin/r_environment.sh" $BUILD_DIR/.profile.d/r_environment.sh
+
+echo "environment copied" | indent
 
 # prevent warnings
 mkdir -p /app/vendor/R/lib64/R/doc/html
