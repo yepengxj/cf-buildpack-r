@@ -60,11 +60,11 @@ mkdir -p $VENDOR_DIR
 
 echo "created directory" | indent
 
-curl $R_BINARIES -s -o $FILE_NAME
+curl $R_BINARIES -s -o $CACHE_DIR/$FILE_NAME
 
 echo "R pulled" | indent
 
-tar xzf $FILE_NAME -C $VENDOR_DIR
+tar xzf $CACHE_DIR/$FILE_NAME -C $VENDOR_DIR
 
 echo "R unpacked" | indent
 
