@@ -62,6 +62,9 @@ echo "created directory" | indent
 
 curl $R_BINARIES -s -o $CACHE_DIR/$FILE_NAME
 
+FILESIZE=$(stat -c%s "$FILE_NAME")
+echo "Size of $FILE_NAME = $FILESIZE bytes."
+
 echo "R pulled" | indent
 
 tar xzf $CACHE_DIR/$FILE_NAME -C $VENDOR_DIR
