@@ -76,22 +76,22 @@ echo "R unpacked" | indent
 
 echo "$PATH" | indent
 
-mkdir -p "$BUILD_DIR/app/vendor"
+mkdir -p "$BUILD_DIR/vendor"
 
-# need to copy the binaries to $BUILD_DIR/app/vendor so that R works
-cp -R $VENDOR_DIR/gcc-$GCC_VERSION $BUILD_DIR/app/vendor/gcc-$GCC_VERSION
-cp -R $VENDOR_DIR/glibc-$GLIBC_VERSION $BUILD_DIR/app/vendor/glibc-$GLIBC_VERSION
-cp -R $VENDOR_DIR/R $BUILD_DIR/app/vendor/R
+# need to copy the binaries to $BUILD_DIR/vendor so that R works
+cp -R $VENDOR_DIR/gcc-$GCC_VERSION $BUILD_DIR/vendor/gcc-$GCC_VERSION
+cp -R $VENDOR_DIR/glibc-$GLIBC_VERSION $BUILD_DIR/vendor/glibc-$GLIBC_VERSION
+cp -R $VENDOR_DIR/R $BUILD_DIR/vendor/R
 
 echo "Stuff copied" | indent
 
 
 
 # R needs to know where gfortran and glibc header files are
-export PATH=$BUILD_DIR/app/vendor/R/bin:$BUILD_DIR/app/vendor/gcc-$GCC_VERSION/bin:$PATH
-export LDFLAGS="-L$BUILD_DIR/app/vendor/gcc-$GCC_VERSION/lib64/"
-export CPPFLAGS="-I$BUILD_DIR/app/vendor/glibc-$GLIBC_VERSION/string/ -I$BUILD_DIR/app/vendor/glibc-$GLIBC_VERSION/time"
-export R_HOME=$BUILD_DIR/app/vendor/R
+export PATH=$BUILD_DIR/vendor/R/bin:$BUILD_DIR/vendor/gcc-$GCC_VERSION/bin:$PATH
+export LDFLAGS="-L$BUILD_DIR/vendor/gcc-$GCC_VERSION/lib64/"
+export CPPFLAGS="-I$BUILD_DIR/vendor/glibc-$GLIBC_VERSION/string/ -I$BUILD_DIR/vendor/glibc-$GLIBC_VERSION/time"
+export R_HOME=$BUILD_DIR/vendor/R
 export R_INCLUDE=$R_HOME/lib64/R/include
 
 echo "variables set" | indent
@@ -109,8 +109,8 @@ cp "$BUILDPACK_DIR/bin/r_environment.sh" $BUILD_DIR/.profile.d/r_environment.sh
 echo "environment copied" | indent
 
 # prevent warnings
-mkdir -p $BUILD_DIR/app/vendor/R/lib64/R/doc/html
-touch $BUILD_DIR/app/vendor/R/lib64/R/doc/html/R.css
+mkdir -p $BUILD_DIR/vendor/R/lib64/R/doc/html
+touch $BUILD_DIR/vendor/R/lib64/R/doc/html/R.css
 
 # install dependencies from CRAN
 echo "Executing init.r script" | indent
@@ -118,21 +118,18 @@ echo "Executing init.r script" | indent
 ls $BUILD_DIR
 
 set +e
-R --version
 
-echo "version successfully displayed"
-
-$BUILD_DIR/app/vendor/R/bin/R -s <<RPROG > output1
+$BUILD_DIR/vendor/R/bin/R -s <<RPROG > output1
   Sys.setenv(BUILD_DIR="$BUILD_DIR")
   setwd("$BUILD_DIR")
   1+1
 RPROG
 
+ls $BUILD_DIR
 cat output1
 
-set -e
 # set the CRAN mirror and run the init.r program
-$BUILD_DIR/app/vendor/R/bin/R -s <<RPROG > indent
+$BUILD_DIR/vendor/R/bin/R -s <<RPROG > indent
   Sys.setenv(BUILD_DIR="$BUILD_DIR")
   setwd("$BUILD_DIR")
   r <- getOption("repos");
@@ -140,14 +137,15 @@ $BUILD_DIR/app/vendor/R/bin/R -s <<RPROG > indent
   options(repos=r);
   `cat $BUILD_DIR/init.r`
 RPROG
+set -e
 
 echo "R $R_VERSION successfully installed" | indent
 
 # need to copy binaries back so that any installed packages are included in the slug
 rm -rf $VENDOR_DIR && mkdir -p $VENDOR_DIR
-cp -R $BUILD_DIR/app/vendor/gcc-$GCC_VERSION $VENDOR_DIR/gcc-$GCC_VERSION
-cp -R $BUILD_DIR/app/vendor/glibc-$GLIBC_VERSION $VENDOR_DIR/glibc-$GLIBC_VERSION
-cp -R $BUILD_DIR/app/vendor/R $VENDOR_DIR/R
+cp -R $BUILD_DIR/vendor/gcc-$GCC_VERSION $VENDOR_DIR/gcc-$GCC_VERSION
+cp -R $BUILD_DIR/vendor/glibc-$GLIBC_VERSION $VENDOR_DIR/glibc-$GLIBC_VERSION
+cp -R $BUILD_DIR/vendor/R $VENDOR_DIR/R
 
 # HACK
 cp $VENDOR_DIR/gcc-$GCC_VERSION/lib64/* $VENDOR_DIR/R/lib64/R/lib
