@@ -86,9 +86,9 @@ echo Downloading and unpacking dependancies...
 echo ======================================================================
 
 # http://www.freetype.org/freetype2/
-curl http://www.mirrorservice.org/sites/download.savannah.gnu.org/releases/freetype/freetype-$freetype_version.tar.gz -o $CACHE_DIR/freetype-$freetype_version.tar.gz -s -S 2>&1
+curl "http://www.mirrorservice.org/sites/download.savannah.gnu.org/releases/freetype/freetype-$freetype_version.tar.gz" -o $CACHE_DIR/freetype-$freetype_version.tar.gz -s -S 2>&1
 #download "http://www.mirrorservice.org/sites/download.savannah.gnu.org/releases/freetype/freetype-$freetype_version.tar.gz" $CACHE_DIR/freetype-$freetype_version.tar.gz
-#tar xzf $CACHE_DIR/freetype-$freetype_version.tar.gz -C $BUILD_DIR/freetype-$freetype_version
+tar xzf $CACHE_DIR/freetype-$freetype_version.tar.gz -C $BUILD_DIR/freetype-$freetype_version 2>&1
 
 # http://directfb.org/
 download "http://directfb.org/downloads/Core/DirectFB-$directfb_ver_major/DirectFB-$directfb_version.tar.gz" $CACHE_DIR/DirectFB-$directfb_version.tar.gz
