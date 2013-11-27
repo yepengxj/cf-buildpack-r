@@ -65,7 +65,7 @@ mkdir -p $VENDOR_DIR
 curl $R_BINARIES -s -o $CACHE_DIR/$FILE_NAME
 tar xzf $CACHE_DIR/$FILE_NAME -C $VENDOR_DIR
 
-echo "Binaries pulled and unpacked" | indent
+echo "R pulled and unpacked" | indent
 
 mkdir -p "$BUILD_DIR/app/vendor"
 
@@ -80,6 +80,8 @@ export LDFLAGS="-L$BUILD_DIR/app/vendor/gcc-$GCC_VERSION/lib64/"
 export CPPFLAGS="-I$BUILD_DIR/app/vendor/glibc-$GLIBC_VERSION/string/ -I$BUILD_DIR/app/vendor/glibc-$GLIBC_VERSION/time"
 export R_HOME=$BUILD_DIR/app/vendor/R
 export R_INCLUDE=$R_HOME/lib64/R/include
+
+echo "variables set" | indent
 
 echo "$PATH" | indent
 echo "$LDFLAGS" | indent
