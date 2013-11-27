@@ -104,6 +104,8 @@ ls $BUILD_DIR
 
 set +e
 
+uname -a
+
 R --version 2>&1
 
 $BUILD_DIR/app/vendor/R/bin/R -s <<RPROG > output1
