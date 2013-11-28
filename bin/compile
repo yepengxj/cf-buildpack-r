@@ -41,7 +41,7 @@ function build() {
   echo
 
   # add to libraries and pkg-config
-  export LD_LIBRARY_PATH="$VENDOR_DIR/$2:$LD_LIBRARY_PATH"
+  export LD_LIBRARY_PATH="$VENDOR_DIR/$2/lib:$LD_LIBRARY_PATH"
   export PKG_CONFIG_PATH="$VENDOR_DIR/$2/lib/pkgconfig:$PKG_CONFIG_PATH"
 
 }
