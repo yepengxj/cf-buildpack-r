@@ -58,7 +58,9 @@ mkdir -p $VENDOR_DIR && mkdir -p /app/vendor && curl $R_BINARIES -s -o - | tar x
 echo "Directory created, R pulled, unpacked" | indent
 
 ls / 2>&1
+echo "----"
 ls /app 2>&1
+echo "----"
 
 # need to copy the binaries to /app/vendor so that R works
 cp -R $VENDOR_DIR/gcc-$GCC_VERSION /app/vendor/gcc-$GCC_VERSION 2>&1
