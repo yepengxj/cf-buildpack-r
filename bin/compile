@@ -88,11 +88,11 @@ echo "Vendoring R $R_VERSION" | indent
 echo "Downloading and unpacking R binaries" | indent
 mkdir -p $VENDOR_DIR && mkdir -p /app/vendor && curl $R_BINARIES -s -o - | tar xzf - -C $VENDOR_DIR
 
-download "ftp://ftp.cwru.edu/pub/bash/readline-5.2.tar.gz" $CACHE_DIR/readline-5.2.tar.gz
-tar xzf $CACHE_DIR/readline-5.2.tar.gz -C $BUILD_DIR
-build "$BUILD_DIR/readline-5.2" readline
+#download "ftp://ftp.cwru.edu/pub/bash/readline-5.2.tar.gz" $CACHE_DIR/readline-5.2.tar.gz
+#tar xzf $CACHE_DIR/readline-5.2.tar.gz -C $BUILD_DIR
+#build "$BUILD_DIR/readline-5.2" readline
 
-echo "build finished"
+#echo "build finished"
 
 ls $VENDOR_DIR/readline
 echo "---"
@@ -120,6 +120,8 @@ export LDFLAGS="-L/app/vendor/gcc-$GCC_VERSION/lib64/"
 export CPPFLAGS="-I/app/vendor/glibc-$GLIBC_VERSION/string/ -I/app/vendor/glibc-$GLIBC_VERSION/time"
 export R_HOME=/app/vendor/R
 export R_INCLUDE=$R_HOME/lib64/R/include
+export LD_LIBRARY_PATH="/lib:/usr/lib:$LD_LIBRARY_PATH"
+ln -s libreadline.so libreadline.so.5 2>&1
 
 echo "variables set" | indent
 
