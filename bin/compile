@@ -27,9 +27,7 @@ function build() {
   echo Building $@...
   echo ----------------------------------------------------------------------
   echo
-  echo "debug"
   pushd $1
-  echo "debug"
     ./configure --prefix=$VENDOR_DIR/$2 ${@:3} > /dev/null 2>&1
     make > /dev/null 2>&1
     make install > /dev/null 2>&1
@@ -89,6 +87,8 @@ mkdir -p $VENDOR_DIR && mkdir -p /app/vendor && curl $R_BINARIES -s -o - | tar x
 download "ftp://ftp.cwru.edu/pub/bash/readline-6.2.tar.gz" $CACHE_DIR/readline-6.2.tar.gz
 tar xzf $CACHE_DIR/readline-6.2.tar.gz -C $BUILD_DIR
 build "$BUILD_DIR/readline-6.2" readline
+
+echo "build finished"
 
 ls $VENDOR_DIR/readline
 echo "---"
