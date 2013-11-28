@@ -87,7 +87,7 @@ echo "Downloading and unpacking R binaries" | indent
 mkdir -p $VENDOR_DIR && mkdir -p /app/vendor && curl $R_BINARIES -s -o - | tar xzf - -C $VENDOR_DIR
 
 download "ftp://ftp.cwru.edu/pub/bash/readline-6.2.tar.gz" $CACHE_DIR/readline-6.2.tar.gz
-tar xzf $CACHE_DIR/readline-6.2.tar.gz
+tar xzf $CACHE_DIR/readline-6.2.tar.gz 2>&1
 ls $CACHE_DIR
 build "$CACHE_DIR/readline-6.2" readline
 
