@@ -58,9 +58,9 @@ mkdir -p $VENDOR_DIR && curl $R_BINARIES -s -o - | tar xzf - -C $VENDOR_DIR
 echo "Directory created, R pulled, unpacked" | indent
 
 # need to copy the binaries to /app/vendor so that R works
-cp -R $VENDOR_DIR/gcc-$GCC_VERSION /app/vendor/gcc-$GCC_VERSION
-cp -R $VENDOR_DIR/glibc-$GLIBC_VERSION /app/vendor/glibc-$GLIBC_VERSION
-cp -R $VENDOR_DIR/R /app/vendor/R
+cp -R $VENDOR_DIR/gcc-$GCC_VERSION /app/vendor/gcc-$GCC_VERSION 2>&1
+cp -R $VENDOR_DIR/glibc-$GLIBC_VERSION /app/vendor/glibc-$GLIBC_VERSION 2>&1
+cp -R $VENDOR_DIR/R /app/vendor/R 2>&1
 
 echo "Stuff copied" | indent
 
