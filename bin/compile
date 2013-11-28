@@ -153,6 +153,8 @@ echo "Executing init.r script" | indent
 # ls $BUILD_DIR
 # cat output1
 
+echo $BUILD_DIR
+
 # set the CRAN mirror and run the init.r program
 /app/vendor/R/bin/R -s <<RPROG > indent
   Sys.setenv(BUILD_DIR="$BUILD_DIR")
@@ -170,7 +172,7 @@ echo "init finished"
 
 #cat indent
 
-R CMD BATCH printout.r printoutout
+R CMD BATCH $BUILD_DIR/printout.r printoutout
 
 cat printoutout
 
