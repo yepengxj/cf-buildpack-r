@@ -120,12 +120,12 @@ export R_INCLUDE=$R_HOME/lib64/R/include
 export LD_LIBRARY_PATH="/lib:/usr/lib:$R_HOME/lib64:LD_LIBRARY_PATH"
 ln -s /usr/lib/libreadline.so $R_HOME/lib64/libreadline.so.5 2>&1
 
-ls /usr/lib
-echo "---"
-ls /lib
-echo "---"
-echo $LD_LIBRARY_PATH
-echo "---"
+#ls /usr/lib
+#echo "---"
+#ls /lib
+#echo "---"
+#echo $LD_LIBRARY_PATH
+#echo "---"
 
 echo "variables set" | indent
 
@@ -142,19 +142,23 @@ touch /app/vendor/R/lib64/R/doc/html/R.css
 # install dependencies from CRAN
 echo "Executing init.r script" | indent
 
-# R --version 2>&1
+R --version 2>&1
 
-# R -s <<RPROG > output1
-#   Sys.setenv(BUILD_DIR="$BUILD_DIR")
-#   setwd("$BUILD_DIR")
-#   1+1
-# RPROG
+R -s <<RPROG > output1
+  Sys.setenv(BUILD_DIR="$BUILD_DIR")
+  setwd("$BUILD_DIR")
+  1+1
+RPROG
+
+cat output1
+
+cat $BUILD_DIR/init.r
 
 # ls $BUILD_DIR
-# cat output1
+echo $BUILD_DIR
 
 # set the CRAN mirror and run the init.r program
-/app/vendor/R/bin/R -s <<RPROG > indent
+R -s <<RPROG > indent
   Sys.setenv(BUILD_DIR="$BUILD_DIR")
   setwd("$BUILD_DIR")
   r <- getOption("repos");
@@ -166,7 +170,17 @@ echo "Executing init.r script" | indent
   `cat $BUILD_DIR/init.r`
 RPROG
 
-cat indent
+echo "init finished"
+
+#cat indent
+
+R CMD BATCH $BUILD_DIR/printout.r printoutout
+
+cat printoutout
+
+echo "*****************"
+
+R CMD BATCH /tmp/staged/app/startHitandmiss.R startinglog
 
 echo "R $R_VERSION successfully installed" | indent
 
