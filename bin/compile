@@ -168,9 +168,9 @@ RPROG
 
 echo "*****************"
 
-R CMD BATCH /tmp/staged/app/startHitandmiss.R startinglog
+#R CMD BATCH /tmp/staged/app/startHitandmiss.R startinglog
 
-cat startinglog
+#cat startinglog
 
 echo "R $R_VERSION successfully installed" | indent
 
