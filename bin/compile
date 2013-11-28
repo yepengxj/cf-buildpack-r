@@ -94,10 +94,10 @@ mkdir -p $VENDOR_DIR && mkdir -p /app/vendor && curl $R_BINARIES -s -o - | tar x
 
 #echo "build finished"
 
-ls $VENDOR_DIR/readline
-echo "---"
-ls $VENDOR_DIR/readline/lib
-echo "---"
+#ls $VENDOR_DIR/readline
+#echo "---"
+#ls $VENDOR_DIR/readline/lib
+#echo "---"
 ls /usr/lib
 echo "---"
 ls /lib
