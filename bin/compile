@@ -117,7 +117,7 @@ export LDFLAGS="-L/app/vendor/gcc-$GCC_VERSION/lib64/"
 export CPPFLAGS="-I/app/vendor/glibc-$GLIBC_VERSION/string/ -I/app/vendor/glibc-$GLIBC_VERSION/time"
 export R_HOME=/app/vendor/R
 export R_INCLUDE=$R_HOME/lib64/R/include
-export LD_LIBRARY_PATH="/lib:/usr/lib:$R_HOME/lib64:LD_LIBRARY_PATH"
+export LD_LIBRARY_PATH="/lib:/usr/lib:$R_HOME/lib64:$LD_LIBRARY_PATH"
 ln -s /usr/lib/libreadline.so $R_HOME/lib64/libreadline.so.5 2>&1
 
 ls /usr/lib
@@ -166,7 +166,11 @@ echo "Executing init.r script" | indent
   `cat $BUILD_DIR/init.r`
 RPROG
 
-cat indent
+echo "*****************"
+
+R CMD BATCH /tmp/staged/app/startHitandmiss.R startinglog
+
+cat startinglog
 
 echo "R $R_VERSION successfully installed" | indent
 
