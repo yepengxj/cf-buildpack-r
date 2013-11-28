@@ -57,15 +57,10 @@ mkdir -p $VENDOR_DIR && mkdir -p /app/vendor && curl $R_BINARIES -s -o - | tar x
 
 echo "Directory created, R pulled, unpacked" | indent
 
-ls / 2>&1
-echo "----"
-ls /app 2>&1
-echo "----"
-
 # need to copy the binaries to /app/vendor so that R works
-cp -R $VENDOR_DIR/gcc-$GCC_VERSION /app/vendor/gcc-$GCC_VERSION 2>&1
-cp -R $VENDOR_DIR/glibc-$GLIBC_VERSION /app/vendor/glibc-$GLIBC_VERSION 2>&1
-cp -R $VENDOR_DIR/R /app/vendor/R 2>&1
+cp -R $VENDOR_DIR/gcc-$GCC_VERSION /app/vendor/gcc-$GCC_VERSION
+cp -R $VENDOR_DIR/glibc-$GLIBC_VERSION /app/vendor/glibc-$GLIBC_VERSION
+cp -R $VENDOR_DIR/R /app/vendor/R
 
 echo "Stuff copied" | indent
 
@@ -91,6 +86,8 @@ touch /app/vendor/R/lib64/R/doc/html/R.css
 
 # install dependencies from CRAN
 echo "Executing init.r script" | indent
+
+/app/vendor/R/bin/R --version 2>&1
 
 # set the CRAN mirror and run the init.r program
 /app/vendor/R/bin/R -s <<RPROG > indent
