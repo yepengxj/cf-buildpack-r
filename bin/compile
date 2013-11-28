@@ -98,8 +98,7 @@ ls $VENDOR_DIR/readline
 echo "---"
 ls $VENDOR_DIR/readline/lib
 echo "---"
-ls $VENDOR_DIR/readline/lib64 2>&1
-echo "---"
+
 
 echo "Directory created, R pulled, unpacked" | indent
 
