@@ -120,12 +120,12 @@ export R_INCLUDE=$R_HOME/lib64/R/include
 export LD_LIBRARY_PATH="/lib:/usr/lib:$R_HOME/lib64:LD_LIBRARY_PATH"
 ln -s /usr/lib/libreadline.so $R_HOME/lib64/libreadline.so.5 2>&1
 
-ls /usr/lib
-echo "---"
-ls /lib
-echo "---"
-echo $LD_LIBRARY_PATH
-echo "---"
+#ls /usr/lib
+#echo "---"
+#ls /lib
+#echo "---"
+#echo $LD_LIBRARY_PATH
+#echo "---"
 
 echo "variables set" | indent
 
@@ -166,7 +166,11 @@ echo "Executing init.r script" | indent
   `cat $BUILD_DIR/init.r`
 RPROG
 
-cat indent
+#cat indent
+
+R CMD BATCH printout.r printoutout
+
+cat printoutout
 
 echo "R $R_VERSION successfully installed" | indent
 
