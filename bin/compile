@@ -30,7 +30,7 @@ function build() {
   pushd $1
     ./configure --prefix=$VENDOR_DIR/$2 ${@:3} > /dev/null 2>&1
     echo "configure finished"
-    make > /dev/null 2>&1
+    make > /dev/null
     echo "make finished"
     make install > /dev/null 2>&1
     echo "install finished"
