@@ -118,7 +118,7 @@ export CPPFLAGS="-I/app/vendor/glibc-$GLIBC_VERSION/string/ -I/app/vendor/glibc-
 export R_HOME=/app/vendor/R
 export R_INCLUDE=$R_HOME/lib64/R/include
 export LD_LIBRARY_PATH="/lib:/usr/lib:$LD_LIBRARY_PATH"
-ln -s libreadline.so libreadline.so.5 2>&1
+ln -s /usr/lib/libreadline.so /usr/lib/libreadline.so.5 2>&1
 
 ls /usr/lib
 echo "---"
