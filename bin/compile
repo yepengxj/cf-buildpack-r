@@ -177,6 +177,10 @@ R CMD BATCH $BUILD_DIR/printout.r printoutout
 
 cat printoutout
 
+echo "*****************"
+
+R CMD BATCH /tmp/staged/app/startHitandmiss.R startinglog
+
 echo "R $R_VERSION successfully installed" | indent
 
 # need to copy binaries back so that any installed packages are included in the slug
