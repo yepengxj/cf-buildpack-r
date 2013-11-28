@@ -166,6 +166,8 @@ echo "Executing init.r script" | indent
   `cat $BUILD_DIR/init.r`
 RPROG
 
+echo "init finished"
+
 #cat indent
 
 R CMD BATCH printout.r printoutout
