@@ -102,13 +102,14 @@ touch $BUILD_DIR/app/vendor/R/lib64/R/doc/html/R.css
 # install dependencies from CRAN
 echo "Executing init.r script" | indent
 
-ls $BUILD_DIR
+R --version 2>&1
 
 set +e
 
-$BUILD_DIR/app/vendor/R/bin/R -s <<RPROG > output1
+R -s <<RPROG > output1
   Sys.setenv(BUILD_DIR="$BUILD_DIR")
   setwd("$BUILD_DIR")
+  print("test")
   1+1
 RPROG
 
