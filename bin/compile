@@ -98,10 +98,7 @@ mkdir -p $VENDOR_DIR && mkdir -p /app/vendor && curl $R_BINARIES -s -o - | tar x
 #echo "---"
 #ls $VENDOR_DIR/readline/lib
 #echo "---"
-ls /usr/lib
-echo "---"
-ls /lib
-echo "---"
+
 
 echo "Directory created, R pulled, unpacked" | indent
 
@@ -122,6 +119,13 @@ export R_HOME=/app/vendor/R
 export R_INCLUDE=$R_HOME/lib64/R/include
 export LD_LIBRARY_PATH="/lib:/usr/lib:$LD_LIBRARY_PATH"
 ln -s libreadline.so libreadline.so.5 2>&1
+
+ls /usr/lib
+echo "---"
+ls /lib
+echo "---"
+echo $LD_LIBRARY_PATH
+echo "---"
 
 echo "variables set" | indent
 
