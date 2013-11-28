@@ -147,6 +147,7 @@ echo "Executing init.r script" | indent
 /app/vendor/R/bin/R -s <<RPROG > output1
   Sys.setenv(BUILD_DIR="$BUILD_DIR")
   setwd("$BUILD_DIR")
+  print("test")
   1+1
 RPROG
 
