@@ -30,10 +30,10 @@ function build() {
   echo "debug"
   pushd $1
   echo "debug"
-    ./configure --prefix=$VENDOR_DIR/$2 ${@:3} 2>&1
-    make 2>&1
-    make install 2>&1
-    make clean 2>&1
+    ./configure --prefix=$VENDOR_DIR/$2 ${@:3} > /dev/null 2>&1
+    make > /dev/null 2>&1
+    make install > /dev/null 2>&1
+    make clean > /dev/null 2>&1
   popd > /dev/null
   echo
   echo
@@ -88,8 +88,14 @@ mkdir -p $VENDOR_DIR && mkdir -p /app/vendor && curl $R_BINARIES -s -o - | tar x
 
 download "ftp://ftp.cwru.edu/pub/bash/readline-6.2.tar.gz" $CACHE_DIR/readline-6.2.tar.gz
 tar xzf $CACHE_DIR/readline-6.2.tar.gz -C $BUILD_DIR
-ls $BUILD_DIR
 build "$BUILD_DIR/readline-6.2" readline
+
+ls $VENDOR_DIR/readline
+echo "---"
+ls $VENDOR_DIR/readline/lib
+echo "---"
+ls $VENDOR_DIR/readline/lib64 2>&1
+echo "---"
 
 echo "Directory created, R pulled, unpacked" | indent
 
