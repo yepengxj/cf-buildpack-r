@@ -80,7 +80,6 @@ CRAN_MIRROR="http://cran.revolutionanalytics.com"
 
 mkdir -p $CACHE_DIR
 
-echo "Starting stuff..."
 # vendor R into the slug
 echo "Vendoring R $R_VERSION" | indent
 
@@ -166,7 +165,7 @@ echo "Executing init.r script" | indent
   `cat $BUILD_DIR/init.r`
 RPROG
 
-cat indent
+#cat indent
 
 echo "R $R_VERSION successfully installed" | indent
 
