@@ -29,9 +29,9 @@ function build() {
   echo
   pushd $1
     ./configure --prefix=$VENDOR_DIR/$2 ${@:3} 2>&1
-    make > /dev/null 2>&1
-    make install > /dev/null 2>&1
-    make clean > /dev/null 2>&1
+    make 2>&1
+    make install 2>&1
+    make clean 2>&1
   popd > /dev/null
   echo
   echo
@@ -86,14 +86,14 @@ mkdir -p $VENDOR_DIR && mkdir -p /app/vendor && curl $R_BINARIES -s -o - | tar x
 
 download "ftp://ftp.cwru.edu/pub/bash/readline-6.2.tar.gz" $CACHE_DIR/readline-6.2.tar.gz
 tar xzf $CACHE_DIR/readline-6.2.tar.gz
-build "$CACHE_DIR/readline-6.2" readline-6.2
+build "$CACHE_DIR/readline-6.2" readline
 
 echo "Directory created, R pulled, unpacked" | indent
 
 # need to copy the binaries to /app/vendor so that R works
 cp -R $VENDOR_DIR/gcc-$GCC_VERSION /app/vendor/gcc-$GCC_VERSION
 cp -R $VENDOR_DIR/glibc-$GLIBC_VERSION /app/vendor/glibc-$GLIBC_VERSION
-cp -R $VENDOR_DIR/readline-6.2 /app/vendor/readline-6.2
+cp -R $VENDOR_DIR/readline /app/vendor/readline
 cp -R $VENDOR_DIR/R /app/vendor/R
 
 echo "Stuff copied" | indent
