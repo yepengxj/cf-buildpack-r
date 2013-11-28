@@ -99,6 +99,7 @@ echo "---"
 ls $VENDOR_DIR/readline/lib
 echo "---"
 
+echo $LD_LIBRARY_PATH
 
 echo "Directory created, R pulled, unpacked" | indent
 
