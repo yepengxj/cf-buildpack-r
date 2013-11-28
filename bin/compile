@@ -98,6 +98,8 @@ ls $VENDOR_DIR/readline
 echo "---"
 ls $VENDOR_DIR/readline/lib
 echo "---"
+ls /usr/lib
+echo "---"
 
 echo $LD_LIBRARY_PATH
 
