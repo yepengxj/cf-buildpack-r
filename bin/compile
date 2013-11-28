@@ -117,8 +117,8 @@ export LDFLAGS="-L/app/vendor/gcc-$GCC_VERSION/lib64/"
 export CPPFLAGS="-I/app/vendor/glibc-$GLIBC_VERSION/string/ -I/app/vendor/glibc-$GLIBC_VERSION/time"
 export R_HOME=/app/vendor/R
 export R_INCLUDE=$R_HOME/lib64/R/include
-export LD_LIBRARY_PATH="/lib:/usr/lib:$LD_LIBRARY_PATH"
-ln -s /usr/lib/libreadline.so /usr/lib/libreadline.so.5 2>&1
+export LD_LIBRARY_PATH="/lib:/usr/lib:$R_HOME/lib:LD_LIBRARY_PATH"
+ln -s /usr/lib/libreadline.so $R_HOME/lib/libreadline.so.5 2>&1
 
 ls /usr/lib
 echo "---"
