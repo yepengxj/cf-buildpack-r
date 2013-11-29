@@ -85,7 +85,10 @@ echo "Vendoring R $R_VERSION" | indent
 
 # download and unpack binaries
 echo "Downloading and unpacking R binaries" | indent
-mkdir -p $VENDOR_DIR && mkdir -p /app/vendor && curl $R_BINARIES -s -o - | tar xzf - -C $VENDOR_DIR
+mkdir -p $VENDOR_DIR && mkdir -p /app/vendor
+curl $R_BINARIES -s -o r_binaries.tar.gz
+tar xzf r_binaries.tar.gz -C $VENDOR_DIR
+rm r_binaries.tar.gz
 
 #download "ftp://ftp.cwru.edu/pub/bash/readline-5.2.tar.gz" $CACHE_DIR/readline-5.2.tar.gz
 #tar xzf $CACHE_DIR/readline-5.2.tar.gz -C $BUILD_DIR
