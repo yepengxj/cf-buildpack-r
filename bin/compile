@@ -156,12 +156,13 @@ RPROG
 R -s <<RPROG
   Sys.setenv(BUILD_DIR="$BUILD_DIR")
   setwd("$BUILD_DIR")
+  print("Hello this is a test")
 RPROG
 
-cat "test finished" | indent
+echo "test finished" | indent
 
 # set the CRAN mirror and run the init.r program
-R -s <<RPROG &> indent
+R -s <<RPROG
   write("in R runtime...",stdout())
   Sys.setenv(BUILD_DIR="$BUILD_DIR")
   setwd("$BUILD_DIR")
