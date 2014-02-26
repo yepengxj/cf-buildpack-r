@@ -157,6 +157,7 @@ R --version 2>&1
 
 # set the CRAN mirror and run the init.r program
 /app/vendor/R/bin/R -s <<RPROG &> indent
+  write("in R runtime...",stdout())
   Sys.setenv(BUILD_DIR="$BUILD_DIR")
   setwd("$BUILD_DIR")
   r <- getOption("repos");
@@ -164,7 +165,7 @@ R --version 2>&1
   r["CRAN"] <- "$CRAN_MIRROR";
   print("assignment successful")
   options(repos=r);
-  print("options set")
+  write("options set",stdout())
   `cat $BUILD_DIR/init.r`
 RPROG
 
