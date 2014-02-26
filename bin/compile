@@ -155,16 +155,10 @@ R --version 2>&1
 #ls $BUILD_DIR
 #cat output1
 
-R -s <<RPROG &> indent
+R -s <<RPROG 
   write("in R runtime...",stdout())
   Sys.setenv(BUILD_DIR="$BUILD_DIR")
   setwd("$BUILD_DIR")
-  r <- getOption("repos");
-  print(r)
-  r["CRAN"] <- "$CRAN_MIRROR";
-  print("assignment successful")
-  options(repos=r);
-  write("options set",stdout())
 RPROG
 
 cat "test finished" | indent
