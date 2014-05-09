@@ -144,22 +144,22 @@ touch /app/vendor/R/lib64/R/doc/html/R.css
 # install dependencies from CRAN
 echo "Executing init.r script" | indent
 
-R --version 2>&1
+#R --version 2>&1
 
-R -s <<RPROG
-  1+1
-RPROG
+#R -s <<RPROG
+#  1+1
+#RPROG
 
 #ls $BUILD_DIR
 #cat output1
 
-R -s <<RPROG
-  Sys.setenv(BUILD_DIR="$BUILD_DIR")
-  setwd("$BUILD_DIR")
-  print("Hello this is a test")
-RPROG
+#R -s <<RPROG
+#  Sys.setenv(BUILD_DIR="$BUILD_DIR")
+#  setwd("$BUILD_DIR")
+#  print("Hello this is a test")
+#RPROG
 
-echo "test finished" | indent
+#echo "test finished" | indent
 
 # set the CRAN mirror and run the init.r program
 R -s <<RPROG
