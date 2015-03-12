@@ -3,7 +3,7 @@
 This is a CloudFoundry buildpack for applications which use
 [R](http://www.r-project.org/) for statistical computing and [CRAN](http://cran.r-project.org/) for R packages.
 
-It's a fork from the above mentioned buildpack for Heroku.
+It's a fork from the R buildpack for Heroku.
 
 R is ‘GNU S’, a freely available language and environment for statistical computing and graphics which provides
 a wide variety of statistical and graphical techniques: linear and nonlinear modelling, statistical tests, time
@@ -14,21 +14,14 @@ the [R project homepage](http://www.r-project.org/) for further information.
 store identical, up-to-date, versions of code and documentation for R.
 
 ## Usage
-Example usage:
+Example usage (replace ```<app_name>``` with the name of your app):
 
 ```
 $ ls
 init.r prog1.r prog2.r ...
 
-$ heroku create --stack cedar --buildpack http://github.com/virtualstaticvoid/heroku-buildpack-r.git
+$ cf push <app_name> -b http://github.com/alexkago/cf-buildpack-r.git
 
-$ git push heroku master
-...
------> Heroku receiving push
------> Fetching custom buildpack
------> R app detected
------> Vendoring R x.xx.x
-       Executing init.r script
 ...
 -----> R successfully installed
 ```
@@ -36,11 +29,6 @@ $ git push heroku master
 The buildpack will detect your app makes use of R if it has the `init.r` file in the root.
 The R runtime is vendored into your slug, and includes the gcc compiler for fortran support.
 
-To reference a specific version of the build pack, add the Git branch or tag name to the end of the build pack URL.
-
-```
-$ heroku create --stack cedar --buildpack http://github.com/virtualstaticvoid/heroku-buildpack-r.git#master
-```
 
 ## Installing R packages
 During the slug compilation process, the `init.r` R file is executed. Put code in this file to install any packages you may require.
@@ -60,31 +48,13 @@ R packages can also be included in your project source and installed when the `i
 install.packages("optional-path-to-packages/local-r-package-file.tar.gz", repos=NULL, type="source")
 ```
 
-## R Console
-You can also run the R console application as follows:
-
-```
-$ heroku run R
-```
-
-Type `q()` to exit the console when you are finished.
-
-_Note that the Heroku slug is read-only, so any changes you make during the session will be discarded._
-
-## Using in your applications
-This buildpack can be used in conjunction with other supported language stacks on Heroku by
-using the [heroku-buildpack-multi](https://github.com/ddollar/heroku-buildpack-multi) buildpack.
-
-See the example [test applications](test) which show how to use R from the console and a simple Ruby application.
-
 ## R Binaries
-The binaries used by the buildpack are for R 2.15.1, and are hosted
-on [s3://heroku-buildpack-r/R-2.15.1-binaries.tar.gz](https://heroku-buildpack-r.s3.amazonaws.com/R-2.15.1-binaries.tar.gz)
+The binaries used by the buildpack are for R 3.0.1, and are hosted
+on [https://s3.amazonaws.com/r-buildpack/R-3.1.0-binaries-20140629-2201.tar.gz](https://s3.amazonaws.com/r-buildpack/R-3.1.0-binaries-20140629-2201.tar.gz)
 
 See the [guide](support/README.md) for building the R binaries yourself.
 
 ## Caveats
-Due to the size of the R runtime, the slug size on Heroku, without any additional packages or program code, is approximately 98Mb.
+Due to the size of the R runtime, the slug size on Cloud Foundry, without any additional packages or program code, is approximately 98Mb.
 If additional R packages are installed by the `init.r` script then the slug size will increase.
 
-[![githalytics.com alpha](https://cruel-carlota.pagodabox.com/e84b7e401f24073d47c0c7e0338fe363 "githalytics.com")](http://githalytics.com/virtualstaticvoid/heroku-buildpack-r)
