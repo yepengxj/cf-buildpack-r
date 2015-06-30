@@ -113,6 +113,7 @@ export LD_LIBRARY_PATH="/lib:/usr/lib:$R_HOME/lib64:$LD_LIBRARY_PATH"
 #ln -s /usr/lib/libreadline.so $R_HOME/lib64/libreadline.so.5 2>&1
 ln -s /usr/lib/x86_64-linux-gnu/libreadline.so $R_HOME/lib64/libreadline.so.5 2>&1
 ln -s /usr/lib/x86_64-linux-gnu/libmpfr.so.4.1.2 $R_HOME/lib64/libmpfr.so.1 2>&1
+ln -s /usr/lib/x86_64-linux-gnu/libgmp.so.10.1.3 $R_HOME/lib64/libgmp.so.3 2>&1
 
 echo "variables set" | indent
 
