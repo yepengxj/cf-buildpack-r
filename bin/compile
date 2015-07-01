@@ -85,6 +85,9 @@ mkdir -p $CACHE_DIR
 # vendor R into the slug
 echo "Vendoring R $R_VERSION" | indent
 
+echo "Installing necessary libraries"
+apt-get install libc6-dev
+
 # download and unpack binaries
 echo "Downloading and unpacking R binaries" | indent
 mkdir -p $VENDOR_DIR && mkdir -p /app/vendor
