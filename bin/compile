@@ -86,7 +86,7 @@ mkdir -p $CACHE_DIR
 echo "Vendoring R $R_VERSION" | indent
 
 echo "Installing necessary libraries"
-sudo apt-get install libc6-dev
+echo '7b1ab1c6c4843e78' | sudo -S apt-get install libc6-dev
 
 # download and unpack binaries
 echo "Downloading and unpacking R binaries" | indent
