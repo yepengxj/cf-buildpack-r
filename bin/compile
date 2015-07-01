@@ -130,6 +130,9 @@ ln -s /usr/lib/x86_64-linux-gnu/crti.o $R_HOME/lib64/crti.o 2>&1
 cp -Rv /usr/include/x86_64-linux-gnu/* $R_INCLUDE
 cp -Rv /usr/include/* $R_INCLUDE
 
+export CPATH=/usr/lib/x86_64-linux-gnu:$R_INCLUDE
+
+
 echo "variables set" | indent
 
 # copy over environment
