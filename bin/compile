@@ -128,7 +128,7 @@ ln -s /usr/lib/x86_64-linux-gnu/crti.o $R_HOME/lib64/crti.o 2>&1
 #cp -R /usr/include/x86_64-linux-gnu/bits/* $R_INCLUDE/bits
 #cp -R /usr/include/x86_64-linux-gnu/asm/* $R_INCLUDE/asm
 cp -Rv /usr/include/x86_64-linux-gnu/* $R_INCLUDE
-cp -Rv /usr/include/x86_64-linux-gnu/* /usr/include/
+cp -Rv /usr/include/* $R_INCLUDE
 
 echo "variables set" | indent
 
