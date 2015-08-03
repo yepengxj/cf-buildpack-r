@@ -104,7 +104,6 @@ echo "Stuff copied" | indent
 
 
 # R needs to know where gfortran and glibc header files are
-export PATH=/app/vendor/R/bin:$PATH
 export LDFLAGS="-Wl,-Bsymbolic-functions -Wl,-z,relro"
 export CPPFLAGS=""
 export R_HOME=/app/vendor/R
@@ -152,7 +151,7 @@ touch /app/vendor/R/lib64/R/doc/html/R.css
 echo "Executing init.r script" | indent
 
 # set the CRAN mirror and run the init.r program
-R -s <<RPROG
+/app/vendor/R/bin/R -s <<RPROG
   Sys.setenv(BUILD_DIR="$BUILD_DIR")
   setwd("$BUILD_DIR")
   r <- getOption("repos");
