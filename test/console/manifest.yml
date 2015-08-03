@@ -1,9 +1,9 @@
 ---
 applications:
-- name: r_test
+- name: r_test11
   memory: 512M
   instances: 1
-  host: r_test
+  host: r_wow1
   domain: cfapps.io
   path: .
-  buildpack: https://github.com/alexkago/cf-buildpack-r
+  buildpack: https://github.com/yepengxj/cf-buildpack-r

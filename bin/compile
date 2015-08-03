@@ -104,13 +104,13 @@ echo "Stuff copied" | indent
 
 
 # R needs to know where gfortran and glibc header files are
-export PATH=/app/vendor/R/bin:/app/vendor/gcc-$GCC_VERSION/bin:$PATH
-export LDFLAGS="-L/app/vendor/gcc-$GCC_VERSION/lib64/"
-export CPPFLAGS="-I/app/vendor/glibc-$GLIBC_VERSION/string/ -I/app/vendor/glibc-$GLIBC_VERSION/time -I/usr/include/x86_64-linux-gnu/sys -I/usr/include/x86_64-linux-gnu/gnu"
+export PATH=/app/vendor/R/bin:$PATH
+export LDFLAGS="-Wl,-Bsymbolic-functions -Wl,-z,relro"
+export CPPFLAGS=""
 export R_HOME=/app/vendor/R
 export R_INCLUDE=$R_HOME/lib64/R/include
-export LD_LIBRARY_PATH="/lib:/usr/lib:/usr/lib/x86_64-linux-gnu:$R_HOME/lib64:$LD_LIBRARY_PATH"
-export LIBRARY_PATH="/lib:/usr/lib:/usr/lib/x86_64-linux-gnu:$R_HOME/lib64:$LD_LIBRARY_PATH"
+export LD_LIBRARY_PATH="/lib:/usr/lib:/usr/lib/x86_64-linux-gnu:$LD_LIBRARY_PATH"
+export LIBRARY_PATH="/lib:/usr/lib:/usr/lib/x86_64-linux-gnu:$LD_LIBRARY_PATH"
 
 #ln -s /usr/lib/libreadline.so $R_HOME/lib64/libreadline.so.5 2>&1
 ln -s /usr/lib/x86_64-linux-gnu/libreadline.so $R_HOME/lib64/libreadline.so.5 2>&1
